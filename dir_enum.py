@@ -17,6 +17,7 @@ except FileNotFoundError:
     sys.exit(1)
 
 directories = sub_list.splitlines()
+valid_count = 0
 
 #Compruebaci[on de directorios
 for dir in directories:
@@ -25,5 +26,7 @@ for dir in directories:
         r = requests.get(dir_enum)
         if r.status_code != 404:
             print("Directorio válido:", dir_enum)
+            valid_count += 1
     except requests.ConnectionError:
         print(f"No se pudo conectar a {dir_enum}.")
+print(f"Cantidad de directorios válidos encontrados: {valid_count}")
